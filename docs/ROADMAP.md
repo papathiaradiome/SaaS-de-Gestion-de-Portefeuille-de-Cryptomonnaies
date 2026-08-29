@@ -44,7 +44,7 @@
 
 - [x] T27. Layout racine : navbar, footer, dark mode, polices
 - [x] T28. Pages `/login` et `/register` : formulaires validés (react-hook-form + zod)
-- [ ] T29. Contexte auth côté client + routes protégées (middleware)
+- [x] T29. Contexte auth côté client + routes protégées (middleware)
 - [ ] T30. Dashboard : cartes KPI (valeur totale, PnL, variation 24h)
 - [ ] T31. Dashboard : pie chart de répartition par actif (Recharts)
 - [ ] T32. Dashboard : line chart de performance du portefeuille

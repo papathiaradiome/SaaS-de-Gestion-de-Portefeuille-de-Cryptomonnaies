@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { apiFetch } from '@/lib/api';
 import type { AuthResponse } from '@/lib/auth-types';
+import { useAuth } from '@/context/auth-context';
 
 const registerSchema = z.object({
   displayName: z.string().max(50, '50 caractères maximum').optional(),
@@ -18,6 +19,7 @@ type RegisterValues = z.infer<typeof registerSchema>;
 
 export function RegisterForm() {
   const router = useRouter();
+  const { login } = useAuth();
   const [serverError, setServerError] = useState<string | null>(null);
   const {
     register,
@@ -38,6 +40,7 @@ export function RegisterForm() {
       });
       localStorage.setItem('cf_access', res.accessToken);
       localStorage.setItem('cf_refresh', res.refreshToken);
+      await login();
       router.push('/dashboard');
       router.refresh();
     } catch (err) {

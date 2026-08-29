@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { apiFetch } from '@/lib/api';
 import type { AuthResponse } from '@/lib/auth-types';
+import { useAuth } from '@/context/auth-context';
 
 const loginSchema = z.object({
   email: z.string().email('Adresse email invalide'),
@@ -17,6 +18,7 @@ type LoginValues = z.infer<typeof loginSchema>;
 
 export function LoginForm() {
   const router = useRouter();
+  const { login } = useAuth();
   const [serverError, setServerError] = useState<string | null>(null);
   const {
     register,
@@ -37,6 +39,7 @@ export function LoginForm() {
       });
       localStorage.setItem('cf_access', res.accessToken);
       localStorage.setItem('cf_refresh', res.refreshToken);
+      await login();
       router.push('/dashboard');
       router.refresh();
     } catch (err) {
