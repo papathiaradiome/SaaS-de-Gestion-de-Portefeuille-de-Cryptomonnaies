@@ -27,7 +27,7 @@
 - [x] T15. `JwtAuthGuard` + strategy Passport + protection globale
 - [x] T16. `GET /auth/me` + module `Users`
 - [x] T17. Rate limiting sur les endpoints d'authentification
-- [ ] T18. Headers de sécurité (Helmet) + CORS configuré
+- [x] T18. Headers de sécurité (Helmet) + CORS configuré
 
 ## Phase 3 — Transactions & Portefeuille
 
