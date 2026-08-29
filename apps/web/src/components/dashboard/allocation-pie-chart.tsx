@@ -44,7 +44,7 @@ export function AllocationPieChart({ summary }: { summary: PortfolioSummary }) {
             ))}
           </Pie>
           <Tooltip
-            formatter={(value: number) => formatUsd(value)}
+            formatter={(value) => formatUsd(Number(value ?? 0))}
             contentStyle={{ background: '#0f172a', border: '1px solid #334155', borderRadius: 12 }}
           />
           <Legend formatter={(value: string) => <span className="text-slate-300">{value}</span>} />
