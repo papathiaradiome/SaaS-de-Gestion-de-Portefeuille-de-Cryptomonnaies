@@ -1,0 +1,27 @@
+{
+  "name": "cryptofolio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SaaS de gestion de portefeuille de cryptomonnaies — Next.js + NestJS + Prisma",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n API,WEB -c blue,green \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run dev -w @cryptofolio/api",
+    "dev:web": "npm run dev -w @cryptofolio/web",
+    "build": "npm run build -w @cryptofolio/api && npm run build -w @cryptofolio/web",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "format": "prettier --write \"apps/*/src/**/*.{ts,tsx,css}\"",
+    "format:check": "prettier --check \"apps/*/src/**/*.{ts,tsx,css}\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "drizzle-orm": "^0.45.2",
+    "prettier": "^3.4.2"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}
