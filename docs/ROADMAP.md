@@ -25,7 +25,7 @@
 - [x] T13. `POST /auth/login` : JWT access token + tests
 - [x] T14. Refresh tokens : émission, stockage hashé, rotation
 - [x] T15. `JwtAuthGuard` + strategy Passport + protection globale
-- [ ] T16. `GET /auth/me` + module `Users`
+- [x] T16. `GET /auth/me` + module `Users`
 - [ ] T17. Rate limiting sur les endpoints d'authentification
 - [ ] T18. Headers de sécurité (Helmet) + CORS configuré
 

@@ -29,11 +29,13 @@ export class AuthController {
   @Post('refresh')
   @HttpCode(HttpStatus.OK)
   refresh(@Body() dto: RefreshDto) {
-    return this.authService.refresh(dto.refreshToken).then(({ accessToken, refreshToken, user }) => ({
-      accessToken,
-      refreshToken,
-      user: toSafeUser(user),
-    }));
+    return this.authService
+      .refresh(dto.refreshToken)
+      .then(({ accessToken, refreshToken, user }) => ({
+        accessToken,
+        refreshToken,
+        user: toSafeUser(user),
+      }));
   }
 
   @Public()
