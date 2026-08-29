@@ -49,7 +49,7 @@
 - [x] T31. Dashboard : pie chart de répartition par actif (Recharts)
 - [x] T32. Dashboard : line chart de performance du portefeuille
 - [x] T33. Page `/transactions` : tableau paginé + modal d'ajout/édition
-- [ ] T34. Page `/watchlist` : ajout/retrait + prix en direct
+- [x] T34. Page `/watchlist` : ajout/retrait + prix en direct
 - [ ] T35. États de chargement, error boundaries + toasts
 
 ## Phase 5 — Qualité & Livraison

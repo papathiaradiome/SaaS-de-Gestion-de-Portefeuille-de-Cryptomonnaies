@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { PortfolioModule } from './portfolio/portfolio.module';
 import { CoinsModule } from './coins/coins.module';
+import { WatchlistModule } from './watchlist/watchlist.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { CoinsModule } from './coins/coins.module';
     TransactionsModule,
     PortfolioModule,
     CoinsModule,
+    WatchlistModule,
   ],
   controllers: [AppController],
   providers: [
