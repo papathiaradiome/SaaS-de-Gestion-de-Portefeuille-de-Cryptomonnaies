@@ -5,9 +5,9 @@ import { createDb, type Db } from './db';
 export class DatabaseService implements OnModuleDestroy {
   private readonly instance: Db;
 
-  constructor() {
-    const url = process.env.DATABASE_URL ?? 'file:./data/dev.db';
-    this.instance = createDb(url);
+  /** L'URL est injectable pour les tests (base en mémoire) ; défaut : variable d'env. */
+  constructor(url?: string) {
+    this.instance = createDb(url ?? process.env.DATABASE_URL ?? 'file:./data/dev.db');
   }
 
   /** Instance Drizzle typée — point d'entrée pour tous les modules. */
