@@ -42,7 +42,7 @@
 
 ## Phase 4 — Frontend (Next.js)
 
-- [ ] T27. Layout racine : navbar, footer, dark mode, polices
+- [x] T27. Layout racine : navbar, footer, dark mode, polices
 - [ ] T28. Pages `/login` et `/register` : formulaires validés (react-hook-form + zod)
 - [ ] T29. Contexte auth côté client + routes protégées (middleware)
 - [ ] T30. Dashboard : cartes KPI (valeur totale, PnL, variation 24h)
