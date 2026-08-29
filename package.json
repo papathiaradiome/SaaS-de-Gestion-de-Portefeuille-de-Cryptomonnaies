@@ -7,6 +7,12 @@
     "apps/*"
   ],
   "scripts": {
+    "dev": "concurrently -n API,WEB -c blue,green \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run dev -w @cryptofolio/api",
+    "dev:web": "npm run dev -w @cryptofolio/web",
+    "build": "npm run build -w @cryptofolio/api && npm run build -w @cryptofolio/web",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
     "format": "prettier --write \"apps/*/src/**/*.{ts,tsx,css}\"",
     "format:check": "prettier --check \"apps/*/src/**/*.{ts,tsx,css}\""
   },
