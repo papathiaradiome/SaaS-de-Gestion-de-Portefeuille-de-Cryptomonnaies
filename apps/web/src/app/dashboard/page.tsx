@@ -6,15 +6,23 @@ import { apiFetch } from '@/lib/api';
 import type { PortfolioSummary } from '@/lib/portfolio-types';
 import { KpiCards } from '@/components/dashboard/kpi-cards';
 import { AllocationPieChart } from '@/components/dashboard/allocation-pie-chart';
+import {
+  PerformanceLineChart,
+  type HistoryPoint,
+} from '@/components/dashboard/performance-line-chart';
 
 function DashboardContent() {
   const [summary, setSummary] = useState<PortfolioSummary | null>(null);
+  const [history, setHistory] = useState<HistoryPoint[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     apiFetch<PortfolioSummary>('/api/portfolio/summary')
       .then(setSummary)
       .catch((err: Error) => setError(err.message));
+    apiFetch<HistoryPoint[]>('/api/portfolio/history')
+      .then(setHistory)
+      .catch(() => setHistory([]));
   }, []);
 
   if (error) {
@@ -41,7 +49,14 @@ function DashboardContent() {
         <h2 className="mb-4 text-lg font-semibold">Répartition du portefeuille</h2>
         <AllocationPieChart summary={summary} />
       </section>
-      {/* Courbe de performance : tâche suivante */}
+      <section className="rounded-2xl border border-base-800 bg-base-900/70 p-6 shadow-lg">
+        <h2 className="mb-4 text-lg font-semibold">Performance du portefeuille</h2>
+        {history ? (
+          <PerformanceLineChart history={history} />
+        ) : (
+          <div className="h-80 animate-pulse rounded-2xl bg-base-900/50" />
+        )}
+      </section>
     </div>
   );
 }

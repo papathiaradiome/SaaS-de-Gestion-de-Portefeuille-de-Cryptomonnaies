@@ -18,4 +18,10 @@ export class PortfolioController {
   summary(@CurrentUser() user: JwtPayload) {
     return this.portfolioService.getSummary(user.sub);
   }
+
+  /** Historique de la valeur du portefeuille (approximé aux prix courants). */
+  @Get('history')
+  history(@CurrentUser() user: JwtPayload) {
+    return this.portfolioService.getHistory(user.sub);
+  }
 }
