@@ -1,4 +1,4 @@
-import { ConflictException } from '@nestjs/common';
+import { ConflictException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import { sql } from 'drizzle-orm';
@@ -22,6 +22,13 @@ describe('AuthService.register', () => {
       created_at INTEGER NOT NULL,
       updated_at INTEGER NOT NULL
     )`);
+    databaseService.db.run(sql`CREATE TABLE refresh_tokens (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      token_hash TEXT NOT NULL UNIQUE,
+      expires_at INTEGER NOT NULL,
+      created_at INTEGER NOT NULL
+    )`);
     const jwtService = new JwtService({ secret: 'test-secret' });
     service = new AuthService(databaseService, jwtService);
   });
@@ -44,5 +51,48 @@ describe('AuthService.register', () => {
     await expect(
       service.register({ email: 'a@b.co', password: 'anotherpass1' }),
     ).rejects.toThrow(ConflictException);
+  });
+});
+
+describe('AuthService.refresh (rotation)', () => {
+  let service: AuthService;
+
+  beforeEach(async () => {
+    process.env.DATABASE_URL = 'file::memory:';
+    const databaseService = new DatabaseService();
+    databaseService.db.run(sql`CREATE TABLE users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      email TEXT NOT NULL UNIQUE,
+      password_hash TEXT NOT NULL,
+      display_name TEXT,
+      created_at INTEGER NOT NULL,
+      updated_at INTEGER NOT NULL
+    )`);
+    databaseService.db.run(sql`CREATE TABLE refresh_tokens (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      token_hash TEXT NOT NULL UNIQUE,
+      expires_at INTEGER NOT NULL,
+      created_at INTEGER NOT NULL
+    )`);
+    const jwtService = new JwtService({ secret: 'test-secret' });
+    service = new AuthService(databaseService, jwtService);
+    await service.register({ email: 'rot@b.co', password: 'supersecret1' });
+  });
+
+  it('émet une nouvelle paire et révoque l\'ancien refresh token', async () => {
+    const login = await service.login({ email: 'rot@b.co', password: 'supersecret1' });
+    expect(login.refreshToken).toBeDefined();
+
+    const rotated = await service.refresh(login.refreshToken);
+    expect(rotated.refreshToken).not.toBe(login.refreshToken);
+    expect(rotated.accessToken).toBeDefined();
+
+    // L'ancien token ne doit plus fonctionner (rotation → usage unique).
+    await expect(service.refresh(login.refreshToken)).rejects.toThrow(UnauthorizedException);
+  });
+
+  it('refuse un refresh token inconnu', async () => {
+    await expect(service.refresh('deadbeef')).rejects.toThrow(UnauthorizedException);
   });
 });
