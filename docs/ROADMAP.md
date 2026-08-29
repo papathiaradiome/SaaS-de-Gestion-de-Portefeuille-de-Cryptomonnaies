@@ -38,7 +38,7 @@
 - [x] T23. Service PnL : gains réalisés / non réalisés + **tests unitaires**
 - [x] T24. Module `Coins` : service CoinGecko + cache mémoire + fallback
 - [x] T25. `GET /portfolio/summary` : valorisation totale, PnL, exposition
-- [ ] T26. `GET /coins/markets` : prix en direct + variations 24h
+- [x] T26. `GET /coins/markets` : prix en direct + variations 24h
 
 ## Phase 4 — Frontend (Next.js)
 
