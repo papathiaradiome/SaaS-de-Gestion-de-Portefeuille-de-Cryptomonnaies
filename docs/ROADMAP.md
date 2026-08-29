@@ -5,7 +5,7 @@
 ## Phase 0 — Setup & Scaffolding
 
 - [x] T1. README v1, LICENSE MIT, .gitignore, ROADMAP
-- [ ] T2. Monorepo racine : npm workspaces, tsconfig base, Prettier, .editorconfig
+- [x] T2. Monorepo racine : npm workspaces, tsconfig base, Prettier, .editorconfig
 - [ ] T3. Scaffold app `web` : Next.js 14 (App Router) + TypeScript + TailwindCSS
 - [ ] T4. Scaffold app `api` : NestJS + endpoint `GET /api/health`
 - [ ] T5. Scripts racine (dev / build) avec exécution parallèle
