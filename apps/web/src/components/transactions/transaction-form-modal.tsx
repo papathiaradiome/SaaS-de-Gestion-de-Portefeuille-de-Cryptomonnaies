@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { apiFetch } from '@/lib/api';
 import { formatUsd } from '@/lib/portfolio-types';
 
@@ -59,11 +60,14 @@ export function TransactionFormModal({ open, onClose, onSaved }: Props) {
           ...(form.notes ? { notes: form.notes } : {}),
         }),
       });
+      toast.success('Transaction enregistrée ✅');
       onSaved();
       onClose();
       setForm({ assetId: '', type: 'buy', quantity: '', pricePerUnit: '', fees: '', notes: '' });
     } catch (err) {
-      setError((err as Error).message);
+      const message = (err as Error).message;
+      setError(message);
+      toast.error(message);
     } finally {
       setSaving(false);
     }

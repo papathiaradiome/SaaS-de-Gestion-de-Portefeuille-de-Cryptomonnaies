@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from '@/context/auth-context';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
+import { ErrorBoundary } from '@/components/error-boundary';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -22,9 +24,21 @@ export default function RootLayout({
     <html lang="fr" className="dark">
       <body className="flex min-h-screen flex-col bg-base-950 font-sans text-slate-100 antialiased">
         <AuthProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <ErrorBoundary>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </ErrorBoundary>
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: {
+                background: '#0f172a',
+                color: '#e2e8f0',
+                border: '1px solid #334155',
+              },
+            }}
+          />
         </AuthProvider>
       </body>
     </html>

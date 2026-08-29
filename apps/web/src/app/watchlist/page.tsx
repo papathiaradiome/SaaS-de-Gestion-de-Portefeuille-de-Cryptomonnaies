@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { RequireAuth } from '@/context/auth-context';
+import toast from 'react-hot-toast';
 import { apiFetch } from '@/lib/api';
 import { formatUsd } from '@/lib/portfolio-types';
 
@@ -48,6 +49,7 @@ function WatchlistContent() {
         body: JSON.stringify({ assetId: Number(selected) }),
       });
       setSelected('');
+      toast.success('Ajouté à la watchlist ⭐');
       load();
     } catch (err) {
       setError((err as Error).message);

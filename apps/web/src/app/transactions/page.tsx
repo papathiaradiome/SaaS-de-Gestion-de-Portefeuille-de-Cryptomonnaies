@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { RequireAuth } from '@/context/auth-context';
+import toast from 'react-hot-toast';
 import { apiFetch } from '@/lib/api';
 import { formatQuantity, formatUsd } from '@/lib/portfolio-types';
 import { TransactionFormModal } from '@/components/transactions/transaction-form-modal';
@@ -51,6 +52,7 @@ function TransactionsContent() {
   const remove = async (id: number) => {
     try {
       await apiFetch(`/api/transactions/${id}`, { method: 'DELETE' });
+      toast.success('Transaction supprimée');
       load();
     } catch (err) {
       setError((err as Error).message);

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { RequireAuth } from '@/context/auth-context';
 import { apiFetch } from '@/lib/api';
 import type { PortfolioSummary } from '@/lib/portfolio-types';
+import { CardsSkeleton, ChartSkeleton } from '@/components/skeletons';
 import { KpiCards } from '@/components/dashboard/kpi-cards';
 import { AllocationPieChart } from '@/components/dashboard/allocation-pie-chart';
 import {
@@ -33,13 +34,7 @@ function DashboardContent() {
     );
   }
   if (!summary) {
-    return (
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="h-28 animate-pulse rounded-2xl border border-base-800 bg-base-900/50" />
-        ))}
-      </div>
-    );
+    return <CardsSkeleton />;
   }
 
   return (
@@ -54,7 +49,7 @@ function DashboardContent() {
         {history ? (
           <PerformanceLineChart history={history} />
         ) : (
-          <div className="h-80 animate-pulse rounded-2xl bg-base-900/50" />
+          <ChartSkeleton />
         )}
       </section>
     </div>
