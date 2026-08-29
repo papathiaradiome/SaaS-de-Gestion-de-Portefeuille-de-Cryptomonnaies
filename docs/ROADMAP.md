@@ -58,4 +58,4 @@
 - [x] T37. CI GitHub Actions : lint + tests + build sur chaque push
 - [x] T38. Dockerfile (multi-stage) + docker-compose (api + postgres + web)
 - [x] T39. Documentation API : Swagger auto-généré
-- [ ] T40. README final : captures d'écran, architecture, guide de déploiement
+- [x] T40. README final : captures d'écran, architecture, guide de déploiement
