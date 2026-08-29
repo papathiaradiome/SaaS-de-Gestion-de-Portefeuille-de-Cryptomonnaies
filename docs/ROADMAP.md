@@ -32,7 +32,7 @@
 ## Phase 3 — Transactions & Portefeuille
 
 - [x] T19. Module `Transactions` : `POST` création avec validation DTO
-- [ ] T20. `GET /transactions` : pagination + filtres par type/actif
+- [x] T20. `GET /transactions` : pagination + filtres par type/actif
 - [ ] T21. `PATCH` / `DELETE /transactions/:id` avec vérification d'ownership
 - [ ] T22. Module `Portfolio` : calcul des positions agrégées
 - [ ] T23. Service PnL : gains réalisés / non réalisés + **tests unitaires**
