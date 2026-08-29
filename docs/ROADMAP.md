@@ -20,7 +20,7 @@
 
 ## Phase 2 — Authentification (NestJS)
 
-- [ ] T11. Module `Auth` : structure + DTOs avec class-validator
+- [x] T11. Module `Auth` : structure + DTOs avec class-validator
 - [ ] T12. `POST /auth/register` : hash bcrypt + tests unitaires
 - [ ] T13. `POST /auth/login` : JWT access token + tests
 - [ ] T14. Refresh tokens : émission, stockage hashé, rotation
