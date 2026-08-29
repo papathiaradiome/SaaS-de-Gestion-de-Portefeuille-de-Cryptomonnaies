@@ -36,8 +36,8 @@
 - [x] T21. `PATCH` / `DELETE /transactions/:id` avec vérification d'ownership
 - [x] T22. Module `Portfolio` : calcul des positions agrégées
 - [x] T23. Service PnL : gains réalisés / non réalisés + **tests unitaires**
-- [ ] T24. `GET /portfolio/summary` : valorisation totale, PnL, exposition
-- [ ] T25. Module `Coins` : service CoinGecko + cache mémoire + fallback
+- [x] T24. Module `Coins` : service CoinGecko + cache mémoire + fallback
+- [ ] T25. `GET /portfolio/summary` : valorisation totale, PnL, exposition
 - [ ] T26. `GET /coins/markets` : prix en direct + variations 24h
 
 ## Phase 4 — Frontend (Next.js)

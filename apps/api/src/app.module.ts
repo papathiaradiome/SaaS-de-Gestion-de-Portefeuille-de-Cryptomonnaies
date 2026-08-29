@@ -10,6 +10,7 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { UsersModule } from './users/users.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { PortfolioModule } from './portfolio/portfolio.module';
+import { CoinsModule } from './coins/coins.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { PortfolioModule } from './portfolio/portfolio.module';
     UsersModule,
     TransactionsModule,
     PortfolioModule,
+    CoinsModule,
   ],
   controllers: [AppController],
   providers: [
