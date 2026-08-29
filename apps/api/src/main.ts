@@ -2,6 +2,7 @@ import 'dotenv/config';
 import 'reflect-metadata';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
 
@@ -30,6 +31,18 @@ async function bootstrap(): Promise<void> {
   app.enableCors({
     origin: allowedOrigins.length > 0 ? allowedOrigins : true,
     credentials: true,
+  });
+
+  // Documentation OpenAPI (Swagger UI) — https://localhost:3001/api/docs
+  const config = new DocumentBuilder()
+    .setTitle('CryptoFolio API')
+    .setDescription('API du SaaS de gestion de portefeuille de cryptomonnaies')
+    .setVersion('0.1.0')
+    .addBearerAuth()
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api/docs', app, document, {
+    swaggerOptions: { persistAuthorization: true },
   });
 
   const port = process.env.PORT ?? 3001;

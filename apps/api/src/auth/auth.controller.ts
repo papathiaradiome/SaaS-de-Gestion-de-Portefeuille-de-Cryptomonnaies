@@ -6,10 +6,12 @@ import { RefreshDto } from './dto/refresh.dto';
 import { RegisterDto } from './dto/register.dto';
 import { Public } from './public.decorator';
 import { toSafeUser } from './safe-user';
+import { ApiTags } from '@nestjs/swagger';
 
 // Endpoints sensibles : 5 tentatives / minute / IP (anti brute-force).
 const AUTH_THROTTLE = { default: { limit: 5, ttl: 60_000 } };
 
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}

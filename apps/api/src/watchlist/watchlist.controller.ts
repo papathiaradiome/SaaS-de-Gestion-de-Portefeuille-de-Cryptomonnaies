@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPip
 import { IsInt, IsPositive } from 'class-validator';
 import { CurrentUser, type JwtPayload } from '../auth/current-user.decorator';
 import { WatchlistService } from './watchlist.service';
+import { ApiTags } from '@nestjs/swagger';
 
 class AddWatchlistDto {
   @IsInt()
@@ -9,6 +10,7 @@ class AddWatchlistDto {
   assetId!: number;
 }
 
+@ApiTags('Watchlist')
 @Controller('watchlist')
 export class WatchlistController {
   constructor(private readonly watchlistService: WatchlistService) {}

@@ -1,7 +1,9 @@
 import { Controller, Get } from '@nestjs/common';
 import { CurrentUser, type JwtPayload } from '../auth/current-user.decorator';
 import { PortfolioService } from './portfolio.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Portfolio')
 @Controller('portfolio')
 export class PortfolioController {
   constructor(private readonly portfolioService: PortfolioService) {}

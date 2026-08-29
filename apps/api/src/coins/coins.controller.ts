@@ -3,7 +3,9 @@ import { DatabaseService } from '../database/database.service';
 import { assets } from '../database/schema';
 import { CoingeckoService } from './coingecko.service';
 import { Public } from '../auth/public.decorator';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Coins')
 @Controller('coins')
 export class CoinsController {
   constructor(

@@ -4,7 +4,9 @@ import { DatabaseService } from '../database/database.service';
 import { users } from '../database/schema';
 import { CurrentUser, type JwtPayload } from '../auth/current-user.decorator';
 import { toSafeUser } from '../auth/safe-user';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly database: DatabaseService) {}
