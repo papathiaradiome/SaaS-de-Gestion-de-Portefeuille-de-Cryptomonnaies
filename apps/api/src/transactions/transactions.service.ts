@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { and, count, desc, eq, type SQL } from 'drizzle-orm';
 import { DatabaseService } from '../database/database.service';
 import { assets, transactions, type TransactionType } from '../database/schema';
@@ -109,5 +109,53 @@ export class TransactionsService {
       total,
       totalPages: Math.max(1, Math.ceil(total / pageSize)),
     };
+  }
+
+  /** Met à jour une transaction appartenant à l'utilisateur. */
+  update(userId: number, id: number, dto: Partial<CreateTransactionDto>) {
+    const { db } = this.database;
+    const existing = this.getOwned(userId, id);
+
+    if (dto.assetId !== undefined) {
+      const asset = db.select().from(assets).where(eq(assets.id, dto.assetId)).get();
+      if (!asset) throw new BadRequestException(`Actif inconnu (id=${dto.assetId})`);
+    }
+
+    return db
+      .update(transactions)
+      .set({
+        ...(dto.assetId !== undefined && { assetId: dto.assetId }),
+        ...(dto.type !== undefined && { type: dto.type }),
+        ...(dto.quantity !== undefined && { quantity: dto.quantity }),
+        ...(dto.pricePerUnit !== undefined && { pricePerUnit: dto.pricePerUnit }),
+        ...(dto.fees !== undefined && { fees: dto.fees }),
+        ...(dto.executedAt !== undefined && { executedAt: new Date(dto.executedAt) }),
+        ...(dto.notes !== undefined && { notes: dto.notes }),
+      })
+      .where(eq(transactions.id, existing.id))
+      .returning()
+      .get();
+  }
+
+  /** Supprime une transaction appartenant à l'utilisateur. */
+  remove(userId: number, id: number): void {
+    const { db } = this.database;
+    const existing = this.getOwned(userId, id);
+    db.delete(transactions).where(eq(transactions.id, existing.id)).run();
+  }
+
+  /** Récupère une transaction en vérifiant qu'elle appartient bien à l'utilisateur. */
+  private getOwned(userId: number, id: number) {
+    const { db } = this.database;
+    const row = db
+      .select()
+      .from(transactions)
+      .where(and(eq(transactions.id, id), eq(transactions.userId, userId)))
+      .get();
+    if (!row) {
+      // 404 volontairement générique : ne pas révéler l'existence d'une ressource d'autrui.
+      throw new NotFoundException('Transaction introuvable');
+    }
+    return row;
   }
 }
