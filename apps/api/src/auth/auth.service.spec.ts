@@ -1,4 +1,5 @@
 import { ConflictException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import { sql } from 'drizzle-orm';
 import { DatabaseService } from '../database/database.service';
@@ -11,7 +12,8 @@ describe('AuthService.register', () => {
   let service: AuthService;
 
   beforeEach(() => {
-    const databaseService = new DatabaseService('file::memory:');
+    process.env.DATABASE_URL = 'file::memory:';
+    const databaseService = new DatabaseService();
     databaseService.db.run(sql`CREATE TABLE users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       email TEXT NOT NULL UNIQUE,
@@ -20,7 +22,8 @@ describe('AuthService.register', () => {
       created_at INTEGER NOT NULL,
       updated_at INTEGER NOT NULL
     )`);
-    service = new AuthService(databaseService);
+    const jwtService = new JwtService({ secret: 'test-secret' });
+    service = new AuthService(databaseService, jwtService);
   });
 
   it('crée un utilisateur avec un mot de passe hashé', async () => {
