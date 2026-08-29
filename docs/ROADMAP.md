@@ -48,7 +48,7 @@
 - [x] T30. Dashboard : cartes KPI (valeur totale, PnL, variation 24h)
 - [x] T31. Dashboard : pie chart de répartition par actif (Recharts)
 - [x] T32. Dashboard : line chart de performance du portefeuille
-- [ ] T33. Page `/transactions` : tableau paginé + modal d'ajout/édition
+- [x] T33. Page `/transactions` : tableau paginé + modal d'ajout/édition
 - [ ] T34. Page `/watchlist` : ajout/retrait + prix en direct
 - [ ] T35. États de chargement, error boundaries + toasts
 
