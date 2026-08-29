@@ -14,7 +14,7 @@
 
 - [x] T6. Couche base de données : Drizzle ORM + better-sqlite3 + module NestJS global
 - [x] T7. Table `users` + première migration drizzle-kit
-- [ ] T8. Tables `assets` et `transactions` + migration
+- [x] T8. Tables `assets` et `transactions` + migration
 - [ ] T9. Table `watchlist_items` + clés étrangères + migration
 - [ ] T10. Seed : top 50 cryptomonnaies depuis CoinGecko
 
