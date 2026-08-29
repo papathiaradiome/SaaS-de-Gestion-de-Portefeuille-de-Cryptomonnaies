@@ -12,4 +12,10 @@ export class PortfolioController {
     const { positions, snapshot } = this.portfolioService.getPositions(user.sub);
     return { positions, totalRealizedPnl: snapshot.totalRealizedPnl };
   }
+
+  /** Résumé valorisé : PnL réalisé/latent, valeur totale, pondérations. */
+  @Get('summary')
+  summary(@CurrentUser() user: JwtPayload) {
+    return this.portfolioService.getSummary(user.sub);
+  }
 }

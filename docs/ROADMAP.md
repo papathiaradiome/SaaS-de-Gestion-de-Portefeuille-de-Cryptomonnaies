@@ -37,7 +37,7 @@
 - [x] T22. Module `Portfolio` : calcul des positions agrégées
 - [x] T23. Service PnL : gains réalisés / non réalisés + **tests unitaires**
 - [x] T24. Module `Coins` : service CoinGecko + cache mémoire + fallback
-- [ ] T25. `GET /portfolio/summary` : valorisation totale, PnL, exposition
+- [x] T25. `GET /portfolio/summary` : valorisation totale, PnL, exposition
 - [ ] T26. `GET /coins/markets` : prix en direct + variations 24h
 
 ## Phase 4 — Frontend (Next.js)
