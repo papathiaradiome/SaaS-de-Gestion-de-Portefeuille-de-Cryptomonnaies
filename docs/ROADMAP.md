@@ -46,7 +46,7 @@
 - [x] T28. Pages `/login` et `/register` : formulaires validés (react-hook-form + zod)
 - [x] T29. Contexte auth côté client + routes protégées (middleware)
 - [x] T30. Dashboard : cartes KPI (valeur totale, PnL, variation 24h)
-- [ ] T31. Dashboard : pie chart de répartition par actif (Recharts)
+- [x] T31. Dashboard : pie chart de répartition par actif (Recharts)
 - [ ] T32. Dashboard : line chart de performance du portefeuille
 - [ ] T33. Page `/transactions` : tableau paginé + modal d'ajout/édition
 - [ ] T34. Page `/watchlist` : ajout/retrait + prix en direct

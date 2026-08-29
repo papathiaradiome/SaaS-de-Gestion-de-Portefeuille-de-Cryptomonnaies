@@ -5,6 +5,7 @@ import { RequireAuth } from '@/context/auth-context';
 import { apiFetch } from '@/lib/api';
 import type { PortfolioSummary } from '@/lib/portfolio-types';
 import { KpiCards } from '@/components/dashboard/kpi-cards';
+import { AllocationPieChart } from '@/components/dashboard/allocation-pie-chart';
 
 function DashboardContent() {
   const [summary, setSummary] = useState<PortfolioSummary | null>(null);
@@ -36,7 +37,11 @@ function DashboardContent() {
   return (
     <div className="space-y-8">
       <KpiCards summary={summary} />
-      {/* Graphiques : tâches suivantes (répartition + performance) */}
+      <section className="rounded-2xl border border-base-800 bg-base-900/70 p-6 shadow-lg">
+        <h2 className="mb-4 text-lg font-semibold">Répartition du portefeuille</h2>
+        <AllocationPieChart summary={summary} />
+      </section>
+      {/* Courbe de performance : tâche suivante */}
     </div>
   );
 }
