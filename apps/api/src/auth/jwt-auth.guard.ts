@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
-import { IS_PUBLIC_KEY, Public } from './public.decorator';
+import { IS_PUBLIC_KEY } from './public.decorator';
 
 /**
  * Garde JWT globale : toutes les routes exigent un `Authorization: Bearer <token>`

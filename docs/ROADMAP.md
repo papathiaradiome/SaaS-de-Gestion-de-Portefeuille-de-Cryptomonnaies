@@ -55,7 +55,7 @@
 ## Phase 5 — Qualité & Livraison
 
 - [x] T36. Tests e2e API (Jest + Supertest) : auth + transactions
-- [ ] T37. CI GitHub Actions : lint + tests + build sur chaque push
+- [x] T37. CI GitHub Actions : lint + tests + build sur chaque push
 - [ ] T38. Dockerfile (multi-stage) + docker-compose (api + postgres + web)
 - [ ] T39. Documentation API : Swagger auto-généré
 - [ ] T40. README final : captures d'écran, architecture, guide de déploiement
