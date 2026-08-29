@@ -35,7 +35,7 @@
 - [x] T20. `GET /transactions` : pagination + filtres par type/actif
 - [x] T21. `PATCH` / `DELETE /transactions/:id` avec vérification d'ownership
 - [x] T22. Module `Portfolio` : calcul des positions agrégées
-- [ ] T23. Service PnL : gains réalisés / non réalisés + **tests unitaires**
+- [x] T23. Service PnL : gains réalisés / non réalisés + **tests unitaires**
 - [ ] T24. `GET /portfolio/summary` : valorisation totale, PnL, exposition
 - [ ] T25. Module `Coins` : service CoinGecko + cache mémoire + fallback
 - [ ] T26. `GET /coins/markets` : prix en direct + variations 24h
