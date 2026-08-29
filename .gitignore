@@ -16,6 +16,8 @@ build/
 
 # Database (dev)
 *.db
+*.db-wal
+*.db-shm
 *.db-journal
 
 # Tests & coverage

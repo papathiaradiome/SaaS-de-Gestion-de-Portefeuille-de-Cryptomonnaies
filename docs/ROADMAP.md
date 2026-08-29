@@ -10,12 +10,12 @@
 - [x] T4. Scaffold app `api` : NestJS + endpoint `GET /api/health`
 - [x] T5. Scripts racine (dev / build) avec exécution parallèle
 
-## Phase 1 — Base de données (Prisma)
+## Phase 1 — Base de données (Drizzle ORM)
 
-- [ ] T6. Prisma initialisé dans `apps/api` (datasource + client)
-- [ ] T7. Modèle `User` + migration
-- [ ] T8. Modèles `Asset` et `Transaction` + migration
-- [ ] T9. Modèle `WatchlistItem` + relations + migration
+- [x] T6. Couche base de données : Drizzle ORM + better-sqlite3 + module NestJS global
+- [ ] T7. Table `users` + première migration drizzle-kit
+- [ ] T8. Tables `assets` et `transactions` + migration
+- [ ] T9. Table `watchlist_items` + clés étrangères + migration
 - [ ] T10. Seed : top 50 cryptomonnaies depuis CoinGecko
 
 ## Phase 2 — Authentification (NestJS)

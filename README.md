@@ -23,8 +23,8 @@
 | Couche | Technologie |
 |--------|-------------|
 | Frontend | Next.js 14 (App Router), TypeScript, TailwindCSS, Recharts |
-| Backend | NestJS, TypeScript, Prisma ORM |
-| Base de données | PostgreSQL (SQLite en développement local) |
+| Backend | NestJS, TypeScript, Drizzle ORM |
+| Base de données | SQLite (développement) · PostgreSQL (production via docker-compose) |
 | Auth | JWT (access + refresh tokens), bcrypt |
 | Données de marché | API CoinGecko |
 | Qualité | Jest (unit + e2e), ESLint, Prettier, GitHub Actions |
@@ -35,6 +35,8 @@
 ├── apps/
 │   ├── web/        # Frontend Next.js (port 3000)
 │   └── api/        # API NestJS (port 3001)
+│       ├── drizzle/          # Migrations SQL versionnées
+│       └── src/database/     # Schéma Drizzle + module NestJS
 ├── docs/
 │   └── ROADMAP.md  # Suivi détaillé des tâches
 ├── docker-compose.yml
@@ -50,8 +52,9 @@ npm install
 # 2. Configurer les variables d'environnement
 cp apps/api/.env.example apps/api/.env
 
-# 3. Appliquer les migrations Prisma + seed
-npm run db:setup
+# 3. Appliquer les migrations Drizzle + seed
+npm run db:migrate -w @cryptofolio/api
+npm run db:seed -w @cryptofolio/api
 
 # 4. Lancer l'API et le frontend en parallèle
 npm run dev

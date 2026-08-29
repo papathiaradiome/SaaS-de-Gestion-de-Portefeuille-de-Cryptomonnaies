@@ -45,7 +45,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="border-t border-base-800/60 py-6 text-center text-sm text-slate-500">
-        CryptoFolio — Next.js · NestJS · Prisma · TailwindCSS
+        CryptoFolio — Next.js · NestJS · Drizzle ORM · TailwindCSS
       </footer>
     </main>
   );
